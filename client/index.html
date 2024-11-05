@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Exam App</title>
+</head>
+<body>
+  <h1>Welcome to the Secure Exam App</h1>
+
+  <!-- Registration Form -->
+  <div>
+    <h2>Register</h2>
+    <input type="email" id="register-email" placeholder="Email" required>
+    <input type="password" id="register-password" placeholder="Password" required>
+    <button onclick="handleRegister()">Register</button>
+  </div>
+
+  <!-- Login Form -->
+  <div>
+    <h2>Login</h2>
+    <input type="email" id="login-email" placeholder="Email" required>
+    <input type="password" id="login-password" placeholder="Password" required>
+    <button onclick="handleLogin()">Login</button>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>
