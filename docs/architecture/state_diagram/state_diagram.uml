@@ -1,0 +1,10 @@
+@startuml
+
+[*] --> ExamDashboard : Open Exam Dashboard
+ExamDashboard --> ExamSelected : Select Exam
+ExamSelected --> QuestionAnswering : Begin Exam
+QuestionAnswering --> QuestionAnswering : Answer Next Question
+QuestionAnswering --> ExamSubmitted : Submit Exam
+ExamSubmitted --> [*] : End
+
+@enduml

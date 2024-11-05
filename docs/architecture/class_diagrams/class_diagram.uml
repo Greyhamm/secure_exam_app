@@ -1,0 +1,45 @@
+@startuml
+
+class User {
+  - id: int
+  - email: string
+  - password: string
+  - role: string
+  + register(): void
+  + login(): void
+}
+
+class Exam {
+  - id: int
+  - title: string
+  - duration: int
+  - questions: List<Question>
+  + createExam(): void
+  + getQuestions(): List<Question>
+}
+
+class Question {
+  - id: int
+  - type: string
+  - text: string
+  + display(): void
+  + getResponse(): Response
+}
+
+class Response {
+  - id: int
+  - questionId: int
+  - answer: string
+  + save(): void
+}
+
+class Dashboard {
+  + showDashboard(): void
+}
+
+User "1" -- "0..*" Exam : "created by"
+Exam "1" -- "1..*" Question
+Question "1" -- "1" Response
+Dashboard "1" -- "1" User : "belongs to"
+
+@enduml

@@ -1,0 +1,36 @@
+@startuml
+actor User
+participant "Client (Renderer.js)" as Client
+participant "Server (Auth Routes)" as Server
+database "Database" as DB
+
+== Registration Sequence ==
+
+User -> Client: Enter email, password
+Client -> Server: POST /register (email, password)
+Server -> DB: Check if email exists
+alt Email exists
+    Server -> Client: Error (Email already registered)
+else Email does not exist
+    Server -> DB: Insert new user
+    DB --> Server: User created
+    Server -> Client: Success (Registration successful)
+end
+
+== Login Sequence ==
+
+User -> Client: Enter email, password
+Client -> Server: POST /login (email, password)
+Server -> DB: Find user by email
+alt User not found
+    Server -> Client: Error (Invalid credentials)
+else User found
+    Server -> DB: Compare password
+    alt Password incorrect
+        Server -> Client: Error (Invalid credentials)
+    else Password correct
+        Server -> Client: Success (Token, role)
+    end
+end
+
+@enduml

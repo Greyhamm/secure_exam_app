@@ -1,0 +1,35 @@
+@startuml
+actor Student
+participant "Client (Exam Interface)" as Client
+participant "Server (Exam Routes)" as Server
+database "Database" as DB
+
+== Start Exam Sequence ==
+
+Student -> Client: Open Exam Dashboard
+Client -> Server: GET /exams
+Server -> DB: Retrieve available exams
+DB --> Server: List of exams
+Server -> Client: Display available exams
+Student -> Client: Select Exam
+Client -> Server: GET /exam/{id}
+
+== Taking Exam ==
+
+loop For each question
+    Client -> Server: GET /exam/{id}/question/{id}
+    Server -> DB: Retrieve question
+    DB --> Server: Question data
+    Server -> Client: Display question
+    Student -> Client: Submit answer
+    Client -> Server: POST /exam/{id}/question/{id}/response
+    Server -> DB: Save response
+end
+
+== Exam Submission ==
+
+Client -> Server: POST /exam/{id}/submit
+Server -> DB: Mark exam as completed
+Server -> Client: Confirmation
+
+@enduml

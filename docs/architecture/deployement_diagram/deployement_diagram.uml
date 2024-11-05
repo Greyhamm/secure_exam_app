@@ -1,0 +1,27 @@
+@startuml
+
+node "Student Device" {
+  component "Electron App" {
+    [Renderer.js]
+    [Auth.js]
+    [ExamInterface.js]
+  }
+}
+
+node "Cloud Server" {
+  component "Express Server" {
+    [Auth Routes]
+    [Exam Routes]
+    [Grading Routes]
+  }
+}
+
+node "Database Server" {
+  [SQLite Database]
+}
+
+"Electron App" --> "Express Server" : HTTP Requests
+"Express Server" --> "SQLite Database" : Database Queries
+
+@enduml
+

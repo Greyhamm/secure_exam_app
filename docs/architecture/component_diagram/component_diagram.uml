@@ -1,0 +1,32 @@
+@startuml
+
+component "Client (Electron)" {
+  [Renderer.js]
+  [Auth.js]
+  [ExamInterface.js]
+}
+
+component "Server (Express)" {
+  [Auth Routes]
+  [Exam Routes]
+  [Grading Routes]
+}
+
+database "SQLite Database" {
+  [Users]
+  [Exams]
+  [Questions]
+  [Responses]
+}
+
+[Renderer.js] --> [Auth Routes] : Handles login, registration
+[Auth.js] --> [Auth Routes] : Authenticates user
+[ExamInterface.js] --> [Exam Routes] : Fetches exam data
+
+[Auth Routes] --> [Users]
+[Exam Routes] --> [Exams]
+[Exam Routes] --> [Questions]
+[Exam Routes] --> [Responses]
+[Grading Routes] --> [Responses]
+
+@enduml

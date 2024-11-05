@@ -1,0 +1,18 @@
+@startuml exam_creation_activity
+
+start
+:Open Instructor Dashboard;
+:Click "Create New Exam";
+:Enter Exam Details (Title, Duration);
+
+repeat
+  :Select Question Type;
+  :Enter Question Details;
+  :Save Question;
+repeat while (More questions?)
+
+:Save Exam;
+:Show Success Message;
+stop
+
+@enduml
